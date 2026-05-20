@@ -1,5 +1,5 @@
 public class DeliveryRoutePLanner{
-    static int minDistance(int[ ] dist,boolean[] visited, int total){
+    static int minDistance(int[] dist,boolean[] visited, int total){
         int min =Integer.MAX_VALUE;
         int minindex=-1;
         for(int i=0;i<total;i++){
@@ -12,6 +12,19 @@ public class DeliveryRoutePLanner{
         return minindex;
 
     }
+
+    static String buildPath(int []parent,int dest,String[] locations){
+        if(parent[dest]==-1) return "no path found";
+        String path="";
+        int current=dest;
+        while(current!=-1){
+            path=locations[current]+(path.equals("") ? "" : " ->" + path);
+            current = parent[current];
+        }
+            return path;
+    }
+
+            
     static void Dijkstra(int [][] graph,int source,String[] locations){
         int total=locations.length;
         int dist[]=new int[total];
@@ -40,9 +53,10 @@ public class DeliveryRoutePLanner{
         System.out.println("");
         for (int i=0;i<total;i++){
             if(i != source){
-                System.out.println(locations[source]+" to "+ locations[i]+" = "+
-                    dist[i]+" km"
-                );
+                System.out.println(locations[source] + " to " + locations[i] + " = " + dist[i]
+                                   + " km  | Path: " + buildPath(parent, i, locations)
+                                  );
+                
             }
         }
     }
