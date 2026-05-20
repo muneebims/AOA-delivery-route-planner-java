@@ -12,7 +12,7 @@ public class DeliveryRoutePLanner{
         return minindex;
 
     }
-    static void Diikstra(int [][] graph,int source,String[] locations){
+    static void Dijkstra(int [][] graph,int source,String[] locations){
         int total=locations.length;
         int dist[]=new int[total];
         boolean[] visited=new boolean[total];
@@ -64,6 +64,6 @@ public class DeliveryRoutePLanner{
             {0,0,5,3,2,0}
         };
         System.out.println("Map loaded with "+locations.length+" locattions");
-        Diikstra(graph, 0, locations);
+        Dijkstra(graph, 0, locations);
     }
 }
